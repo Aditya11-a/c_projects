@@ -47,8 +47,7 @@ int main(int argc,char *argv[]){
         exit(EXIT_FAILURE);
     }
     printf("saved and closed");
-    free(buffer);
-    free (datafile);
+    
 return 0;
 }
 void *fatal(char* message){
