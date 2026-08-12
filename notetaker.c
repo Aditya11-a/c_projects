@@ -15,7 +15,8 @@ void *ec_malloc(unsigned int);
 
 
 int main(int argc, char *argv[]){
-    int fd, userid;
+    int fd;
+    int userid;
     char* buffer; 
     char* datafile;
     
@@ -27,7 +28,8 @@ int main(int argc, char *argv[]){
     strcpy(buffer,argv[1]);
     printf("[DEBUG] buffer is at %p and contains %s\n",buffer,buffer);
     printf("[DEBUG] datafile is at %p and contains %s\n",datafile,datafile);
-    userid= getuid();
+    userid = getuid();
+    printf("%d",userid);
     fd = open(datafile,O_RDWR|O_CREAT|O_APPEND,0644);
     if (fd == -1){
         fatal("While opening the file");
