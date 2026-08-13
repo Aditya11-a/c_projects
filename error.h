@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 
 void fatal(char *message){
     char error_message[100];
