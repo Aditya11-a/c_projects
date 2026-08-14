@@ -5,3 +5,34 @@
 #include <unistd.h>
 #include "error.h"
 #define FILENAME "varnotes"
+void fatal(char *);
+int print_notes(int,int);
+
+
+
+
+
+int main(int argc, char* argv[]){
+    int userid, fd,printing;
+    printing = 1;
+    userid = getuid();
+    printf("opening file");
+    fd = open(FILENAME,O_RDONLY);
+    if(fd == -1)
+        fatal("in main() while opening the file");
+    
+    while(printing)
+        printing = print_notes(fd, userid);
+    printf("----------[END]-----------");
+    close(fd);
+return 0 ;
+}
+
+
+
+int print_notes(int fd, int userid){
+
+}
+
+
+

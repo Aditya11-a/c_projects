@@ -3,21 +3,41 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <unistd.h>
+#define FILENAME "varnotes"
+#include "error.h"
 
-void *ec_malloc(unsigned int size){
-    void *ptr=malloc(size);
-    if(ptr == NULL){
-        fprintf(stderr,"error while allocating space\n");
-        exit(EXIT_FAILURE);}
-    return ptr;
-}
-int main (char* argc, char* argv[]){
-    int fd;
-    char *datafile = (char*)ec_malloc(20);
+int find_user_notes(int,int);
 
-    printf("allocated space starting from %p\n",datafile);
-    strcpy(datafile,"hello");
-    fd = open(datafile,O_WRONLY| O_CREAT, 0644);
-    printf("the functional directory of open folder is %d\n",fd);
+int main(){
+    int fd , userid;
+    userid= getuid();
+    printf("opening the file");
+    fd = open(FILENAME,O_RDONLY);
+    if (fd == -1)
+        fatal("error in main() while opening the file");
+    
+    printf("the length of the notes of the user is %d",find_user_notes(fd,userid));
     return 0;
+}
+
+int find_user_notes(int fd, int uid){
+    int note_id = -1;
+    int note_length ;
+    unsigned char byte;
+    while(note_id != uid){
+        if(read(fd,&note_id,4)!=4)
+            return -2;
+        if(read(fd,&byte,1)!= 1)
+            return -1;
+        
+        byte=note_length=0;
+        while(byte != '\n'){
+            if(read(fd,&byte,1)!= 1)
+                return -3;
+            note_length ++;
+        }
+    }
+    lseek(fd,note_length *-1,SEEK_CUR);
+    return note_length;
 }
