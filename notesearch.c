@@ -7,7 +7,7 @@
 #define FILENAME "varnotes"
 void fatal(char *);
 int print_notes(int,int);
-
+int find_user_notes(int,int);
 
 
 
