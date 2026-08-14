@@ -43,16 +43,14 @@ int find_user_notes(int fd, int uid){
             return -2;
         if(read(fd,&byte,1)!= 1)
             return -1;
-        
-        byte=note_length=0;
+    }
+    byte=note_length=0;
         while(byte != '\n'){
             if(read(fd,&byte,1)!= 1)
-                return -3;
+               return -3;
             note_length ++;
         }
-    }
     lseek(fd,note_length *-1,SEEK_CUR);
     return note_length;
 }
-
 
