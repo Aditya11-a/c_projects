@@ -36,21 +36,21 @@ int print_notes(int fd, int userid){
 
 int find_user_notes(int fd, int uid){
     int note_id = -1;
-    int note_length ;
+    int length ;
     unsigned char byte;
     while(note_id != uid){
         if(read(fd,&note_id,4)!=4)
-            return -2;
+            return -1;
         if(read(fd,&byte,1)!= 1)
             return -1;
     }
-    byte=note_length=0;
+    byte=length=0;
         while(byte != '\n'){
             if(read(fd,&byte,1)!= 1)
-               return -3;
-            note_length ++;
+               return -1;
+            length ++;
         }
-    lseek(fd,note_length *-1,SEEK_CUR);
-    return note_length;
+    lseek(fd,length *-1,SEEK_CUR);
+    return length;
 }
 
