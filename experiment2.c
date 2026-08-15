@@ -19,14 +19,18 @@ int main(){
     if (fd == -1)
         fatal("in main while opening the file");
     note_length = find_user_notes(fd,userid);
+    while(note_length != -1){
     printf("allocating memmory in the heap\n");
     heap = (char*)ec_malloc(note_length +1);
+
     printf("moving note in the heap with address %p\n",heap);
     reader = read(fd,heap,note_length);
     if(reader == -1)
         fatal("error while storing note in heap");
     printf("%s",heap);
     free(heap);
+    note_length = find_user_notes(fd,userid);
+    }
     if(close(fd) == -1)
         fatal("error while closing the file");
     return 0;
