@@ -9,11 +9,13 @@
 
 void fatal(char *);
 int find_user_notes(int, int);
-int main(){
+int search_filter(char*);
+
+int main(int argc, char* argv[]){
     int fd , userid , reader,note_length;
     char *heap;
     userid = getuid();
-    
+
     printf("opening the file\n");
     fd = open(FILENAME,O_RDONLY);
     if (fd == -1)
@@ -28,7 +30,8 @@ int main(){
     if(reader == -1)
         fatal("error while storing note in heap");
     heap[note_length]='\0';
-    printf("%s",heap);
+    if(search_filter(heap))
+        printf("%s",heap);
     free(heap);
     note_length = find_user_notes(fd,userid);
     }
@@ -57,4 +60,8 @@ int find_user_notes(int fd, int uid){
     }
     lseek(fd,length *-1,SEEK_CUR);
     return length;
+}
+
+int search_filter(char* note){
+    
 }
