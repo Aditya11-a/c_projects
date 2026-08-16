@@ -27,6 +27,7 @@ int main(){
     reader = read(fd,heap,note_length);
     if(reader == -1)
         fatal("error while storing note in heap");
+    heap[note_length]='\0';
     printf("%s",heap);
     free(heap);
     note_length = find_user_notes(fd,userid);
@@ -46,13 +47,14 @@ int find_user_notes(int fd, int uid){
             return -1;
         if(read(fd,&byte,1)!= 1)
             return -1;
-    }
+    
     byte=length=0;
         while(byte != '\n'){
             if(read(fd,&byte,1)!= 1)
                return -1;
             length ++;
         }
+    }
     lseek(fd,length *-1,SEEK_CUR);
     return length;
 }
