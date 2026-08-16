@@ -21,10 +21,10 @@ int main(int argc, char* argv[]){
     if(fd == -1)
         fatal("in main() while opening the file\n");
     
-    while(printing)
-        printing = print_notes(fd, userid);
+    print_notes(fd, userid);
     printf("----------[END]-----------");
-    close(fd);
+    if(close(fd)== -1)
+        fatal("while closing the file");
 return 0 ;
 }
 
@@ -34,7 +34,6 @@ int print_notes(int fd, int userid){
     int note_length;
     char * heap;
     note_length = find_user_notes(fd,userid);
-    heap = ec_malloc(note_length +1);
     while(note_length != -1){
     printf("allocating memmory in the heap\n");
     heap = (char*)ec_malloc(note_length +1);
@@ -48,8 +47,6 @@ int print_notes(int fd, int userid){
     free(heap);
     note_length = find_user_notes(fd,userid);
     }
-    if(close(fd) == -1)
-        fatal("error while closing the file");
     return 0;
 }
 
