@@ -22,9 +22,8 @@ int main(int argc, char* argv[]){
         filter = ec_malloc(strlen(argv[1])+1);
         strcpy(filter,argv[1]);
     }
-    else{
+    else
         filter = ec_malloc(0);
-        filter[0]='\0';}
     printf("opening file\n");
     fd = open(FILENAME,O_RDONLY);
     if(fd == -1)
