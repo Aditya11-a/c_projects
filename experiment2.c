@@ -70,25 +70,22 @@ int find_user_notes(int fd, int uid){
 }
 
 int search_filter(char* note,char*keyword){
-    int note_len = strlen(note);
-    int key_len = strlen(keyword);
-    int i , j;
-    int all_matched=0;
-    if(key_len==0) return 1;
-
-    for(i=0;i<=note_len-key_len;i++){
-        if(note[i]== keyword[0]){
-            all_matched=1;
-                for(j=1;j<key_len;j++){
-                    if(note[i+j]!=keyword[j]){
-                    all_matched=0;
-                    break;}
-                }
-
+    int i , match;
+    match = 0;
+    if(strlen(keyword)== 0)
+        return 1;
+    for(i=0;i<strlen(note);i++){
+        if(note[i]==keyword[match])
+            match++;
+        else{
+            if(note[i]==keyword[0])
+                match=1;
+            else
+                match = 0;
         }
-    if(all_matched==1){
-        return 1;}
     }
-    return 0;
-
+    if(match == strlen(keyword))
+        return 1;
+    else
+        return 0;
 }
