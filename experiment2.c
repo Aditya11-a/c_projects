@@ -9,7 +9,7 @@
 
 void fatal(char *);
 int find_user_notes(int, int);
-int search_filter(char*);
+int search_filter(char*,char*);
 
 int main(int argc, char* argv[]){
     int fd , userid , reader,note_length;
@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
     if(reader == -1)
         fatal("error while storing note in heap");
     heap[note_length]='\0';
-    if(search_filter(heap))
+    if(search_filter(heap,argv[1]))
         printf("%s",heap);
     free(heap);
     note_length = find_user_notes(fd,userid);
@@ -62,6 +62,23 @@ int find_user_notes(int fd, int uid){
     return length;
 }
 
-int search_filter(char* note){
-    
+int search_filter(char* note,char*keyword){
+    int i , match;
+    match = 0;
+    if(strlen(keyword)== 0)
+        return 1;
+    for(i=0;i<strlen(keyword);i++){
+        if(note[i]==keyword[match])
+            match++;
+        else{
+            if(note[i]==keyword[0])
+                match=1;
+            else
+                match = 0;
+        }
+    }
+    if(match == strlen(keyword))
+        return 1;
+    else
+        return 0;
 }
