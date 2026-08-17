@@ -3,6 +3,7 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <string.h>
 #include <unistd.h>
 #define FILENAME "varnotes"
 #include "error.h"
@@ -14,8 +15,14 @@ int search_filter(char*,char*);
 int main(int argc, char* argv[]){
     int fd , userid , reader,note_length;
     char *heap;
+    char *filter;
     userid = getuid();
-
+    if (argc>1){
+        filter = ec_malloc(strlen(argv[1]));
+        strcpy(filter,argv[1]);
+    }
+    else 
+        filter = ec_malloc(0);
     printf("opening the file\n");
     fd = open(FILENAME,O_RDONLY);
     if (fd == -1)
@@ -30,7 +37,7 @@ int main(int argc, char* argv[]){
     if(reader == -1)
         fatal("error while storing note in heap");
     heap[note_length]='\0';
-    if(search_filter(heap,argv[1]))
+    if(search_filter(heap,filter))
         printf("%s",heap);
     free(heap);
     note_length = find_user_notes(fd,userid);
@@ -67,7 +74,7 @@ int search_filter(char* note,char*keyword){
     match = 0;
     if(strlen(keyword)== 0)
         return 1;
-    for(i=0;i<strlen(keyword);i++){
+    for(i=0;i<strlen(note);i++){
         if(note[i]==keyword[match])
             match++;
         else{
@@ -76,9 +83,9 @@ int search_filter(char* note,char*keyword){
             else
                 match = 0;
         }
-    }
     if(match == strlen(keyword))
         return 1;
-    else
+    }
         return 0;
+    
 }
