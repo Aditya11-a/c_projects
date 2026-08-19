@@ -1,26 +1,34 @@
 #include <stdio.h>
 
-struct point{
-    int x;
-    int y;
-};
-struct rect{
-    struct point a;
-    struct point b;
-};
-struct point make(int x, int y)
+typedef struct point{
+    unsigned x;
+    unsigned y;
+}Point;
+typedef struct rect{
+    Point a;
+    Point b;
+}Rect;
+Point make(unsigned x, unsigned y)
     {
-        struct point temp;
+        Point temp;
         temp.x = x;
         temp.y = y;
         return temp;
     }
+Point middle(Rect r){
+    Point temp;
+    temp.x = (((r.a.x + r.b.x)) >>1);
+    temp.y = (((r.a.y + r.b.y)) >>1);
+    return temp;
+}
+
 
 int main(){
-    struct rect rectangle;
+    Rect rectangle;
 
-    rectangle.a= make(2,3);
-    rectangle.b= make(4,5);
-    printf("%d,%d and %d,%d",rectangle.a.x,rectangle.a.y,rectangle.b.x,rectangle.b.y);
+    rectangle.a= make(2,2);
+    rectangle.b= make(4,4);
+    Point mid= middle(rectangle);
+    printf("%u,%u",mid.x,mid.y);
     return 0;
 }
