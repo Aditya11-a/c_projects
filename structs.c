@@ -34,6 +34,7 @@ int main(){
     rectangle.a= make(2,2);
     rectangle.b= make(4,4);
     Point mid= middle(rectangle);
-    printf("%u,%u",addpoint(rectangle).x,addpoint(rectangle).y);
+    Point add= addpoint(rectangle);
+    printf("%u,%u",add.x,add.y);
     return 0;
 }
