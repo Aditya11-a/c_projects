@@ -21,6 +21,11 @@ Point middle(Rect r){
     temp.y = (((r.a.y + r.b.y)) >>1);
     return temp;
 }
+Point addpoint(Rect r){
+    r.a.x += r.b.x;
+    r.a.y += r.b.y;
+    return r.a;
+}
 
 
 int main(){
@@ -29,6 +34,6 @@ int main(){
     rectangle.a= make(2,2);
     rectangle.b= make(4,4);
     Point mid= middle(rectangle);
-    printf("%u,%u",mid.x,mid.y);
+    printf("%u,%u",addpoint(rectangle).x,addpoint(rectangle).y);
     return 0;
 }
