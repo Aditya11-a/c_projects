@@ -38,6 +38,6 @@ int main(){
     rectangle.a= make(2,2);
     rectangle.b= make(4,4);
     if(pinrect(c,rectangle))
-        printf("%d,%d is inside rectangle",c.x,c.y);
+        printf("%u,%u is inside rectangle",c.x,c.y);
     return 0;
 }
