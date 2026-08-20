@@ -1,4 +1,6 @@
 #include <stdio.h>
+#define min(a,b) ((a)<(b) ? (a):(b))
+#define max(a,b) ((a)>(b) ? (a):(b))
 
 typedef struct point{
     unsigned x;
@@ -29,6 +31,14 @@ Point addpoint(Rect r){
 
 int pinrect(Point p, Rect r){
     return p.x >= r.a.x && p.x < r.b.x && p.y >= r.a.y && p.y < r.b.y ; 
+}
+Rect canonrect(Rect r){
+    Rect temp;
+    temp.a.x = min(r.a.x, r.b.x);
+    temp.a.y = min(r.a.y,r.b.y);
+    temp.b.x = max(r.a.x, r.b.x);
+    temp.b.y = max(r.a.y,r.b.y);
+    return temp;
 }
 
 
