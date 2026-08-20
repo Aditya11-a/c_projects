@@ -27,14 +27,17 @@ Point addpoint(Rect r){
     return r.a;
 }
 
+int pinrect(Point p, Rect r){
+    return p.x >= r.a.x && p.x < r.b.x && p.y >= r.a.y && p.y < r.b.y ; 
+}
+
 
 int main(){
     Rect rectangle;
-
+    Point c = {2,3};
     rectangle.a= make(2,2);
     rectangle.b= make(4,4);
-    Point mid= middle(rectangle);
-    Point add= addpoint(rectangle);
-    printf("%u,%u",add.x,add.y);
+    if(pinrect(c,rectangle))
+        printf("%d,%d is inside rectangle",c.x,c.y);
     return 0;
 }
