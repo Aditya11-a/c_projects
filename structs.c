@@ -45,9 +45,10 @@ Rect canonrect(Rect r){
 int main(){
     Rect rectangle;
     Point c = {2,3};
+    Point *d = &c;
     rectangle.a= make(2,2);
     rectangle.b= make(4,4);
     if(pinrect(c,rectangle))
-        printf("%u,%u is inside rectangle",c.x,c.y);
+        printf("%u,%u is inside rectangle",(*d).x,d->y);
     return 0;
 }
