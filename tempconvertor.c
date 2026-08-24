@@ -29,11 +29,11 @@ int main(int argc , char* argv[]){
 }
 
 void f_to_c(float ttoc){
-    float c = (5/9)*ttoc-32;
+    float c = (5.0/9.0)*ttoc-32;
     printf("%f in celcius is %f",ttoc,c);
 }
 
 void c_to_F(float ttoc){
-    float c = (9/5*ttoc)+32;
+    float c = (9.0/5.0*ttoc)+32;
     printf("%f in farenhite is %f",ttoc,c);
 }
