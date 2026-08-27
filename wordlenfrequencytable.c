@@ -42,7 +42,7 @@ int main(){
     }
     putchar('\n');
     for(i=1;i<17;i++){
-        if(i >0 && i<16 && frequency[i]>0){
+        if(frequency[i]>0){
             printf("%d |",i);
             for(j=0;j<frequency[i];j++){
                 printf("*");
@@ -50,7 +50,7 @@ int main(){
             putchar('\n');
         }
         else if (i == 16 && frequency[i]>0){
-            printf("%d |",i);
+            printf("15+ |");
             for(j=0;j<frequency[i];j++){
                 printf("*");
             }
