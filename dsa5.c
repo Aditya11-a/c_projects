@@ -5,12 +5,12 @@ void usage(char* programe_name){
     exit(0);
 }
 int main(int argc, char* argv[]){
-    int a,b , s=0;
+    long long int a,b , s=0;
     
     if (argc !=2)
      usage(argv[0]);
     a = atoi(argv[1]);
     s = (a*(a+1))>>1;
-    printf("%d",s);
+    printf("%lld",s);
         return 0;
 }
