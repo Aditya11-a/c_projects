@@ -5,12 +5,12 @@ void usage(char* programe_name){
     exit(0);
 }
 int main(int argc, char* argv[]){
-    int a,b;
+    long long int a,b;
     
     if (argc !=2)
      usage(argv[0]);
     a = atoi(argv[1]);
-    b = a<<31;
+    b = a<<63;
     if (b == 0)
         printf("%d is even\n",a);
     else
