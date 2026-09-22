@@ -1,4 +1,6 @@
-123456781234567812345678
-A       B
-C  	D
-E                  F
+---------1---------2---------3---------4---------5---------6---------7---------8
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+This is a standard sentence that will naturally exceed the eighty column limit by just a few words.
+ThisWordIsExactlyOneHundredAndFifteenCharactersLongAndHasAbsolutelyNoSpacesInsideOfItSoYourEngineMustHyphenateItProperly.
+Here is a line where a space lands exactly on column eighty, right after this word. 
+                                                                                This line starts with eighty spaces before the first word even begins.
