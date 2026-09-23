@@ -1,6 +1,23 @@
----------1---------2---------3---------4---------5---------6---------7---------8
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
-This is a standard sentence that will naturally exceed the eighty column limit by just a few words.
-ThisWordIsExactlyOneHundredAndFifteenCharactersLongAndHasAbsolutelyNoSpacesInsideOfItSoYourEngineMustHyphenateItProperly.
-Here is a line where a space lands exactly on column eighty, right after this word. 
-                                                                                This line starts with eighty spaces before the first word even begins.
+#include <stdio.h> // This single-line comment should be removed completely.
+
+/* This is a standard
+   multi-line comment that
+   should also be completely removed. */
+
+int main() {
+    /**/int a = 10 / 2; /* The division symbol must stay, but this comment must go. */
+    
+    // This entire line should disappear.
+    
+    char* str1 = "This string has // inside it. It should NOT be deleted.\\";
+    char* str2 = "This string has /* a fake comment */ inside it. Keep it.";
+    char* str3 = "This string tests escapes: \" // still not a comment \" ";
+    
+    char c1 = '/'; // The character constant '/' must stay.
+    char c2 = '\''; /* The escaped single quote must not break your engine. */
+    char c3 = '"'; 
+    
+    printf("%s\n", str1);
+    
+    return 0; /**/ // Wait, another comment here!
+}
