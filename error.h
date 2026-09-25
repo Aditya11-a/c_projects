@@ -18,3 +18,11 @@ void *ec_malloc(unsigned int size){
     fatal("error while allocating memmory in ec_malloc");
     return ptr;
 }
+
+void* ec_realloc(void* ptr,size_t new_size){
+    void *ret_ptr;
+    ret_ptr = realloc(ptr,new_size);
+    if(ret_ptr==NULL)
+    fatal("error while allocating more memmory to stack");
+    return ret_ptr;
+}
