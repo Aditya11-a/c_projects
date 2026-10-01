@@ -75,6 +75,7 @@ int main(){
             entered=0;
             }
             holder=c;
+            if(c=='\n') putchar(c);
         }
         else if(comment && type=='/'){
             if(c=='\n'){

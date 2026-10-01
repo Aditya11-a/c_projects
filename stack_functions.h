@@ -39,7 +39,7 @@ char* stack_builder(char* buffer_ptr,int size){
 
 char push(char value){
     if(stack.current == stack.top){
-        return NULL;
+        return '\0';
     }
     else{  
     *stack.current= value;
@@ -56,11 +56,11 @@ void stack_updater(char* buffer_ptr){
 
 char pop(){
     if((stack.current-1)==(stack.base_pointer-1)){
-        return NULL;
+        return '\0';
     }
     else{
         char delete_char = *(stack.current-1);
-        *(stack.current-1) = NULL;
+        *(stack.current-1) = '\0';
         stack.current--;
         return delete_char;
     }
