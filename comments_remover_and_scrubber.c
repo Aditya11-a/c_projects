@@ -12,7 +12,7 @@ int main(){
     buffer[2]=0;
     while((c=getchar())!=EOF){
         if(quote){
-            //putchar(c);
+            //putchar(c);  //this prints inside double qoutes and single qoutes.
             if(counter){
             if(type2=='"'){
             if(c=='"'){

@@ -24,7 +24,7 @@ void stack_engine(char* ptr){
     else{
     stack.current = stack.base_pointer;
     }
-    stack.previous_stack_size=stack.size;
+    stack.previous_stack_size=stack.size;//there will be some error here. i think.
 }
 
 
